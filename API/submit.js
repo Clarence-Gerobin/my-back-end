@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Portfolio = require("../Models/portfoliobuilder"); 
+const Portfolio = require("../Models/PortfolioBuilder"); 
 
 router.post("/", async (req, res) => {
     // This will show you exactly what Postman is sending in your CMD
