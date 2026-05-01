@@ -10,8 +10,11 @@ const app = express();
 const server = http.createServer(app); 
 
 // Middleware
-app.use(cors());
-app.use(express.json()); 
+app.use(cors({
+  origin: "https://pupbc-front-end.vercel.app", // Your actual Vercel URL
+  methods: ["POST", "GET"],
+  credentials: true
+}));
 
 // Database Connection
 const dbURI = process.env.MONGODB_URI || "mongodb+srv://Clarence:Clarence1234@expressnode.kbrntli.mongodb.net/";
