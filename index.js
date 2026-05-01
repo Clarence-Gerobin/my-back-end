@@ -1,32 +1,36 @@
-// 1. DNS Fix for MongoDB Atlas
-const dns = require('node:dns');
-dns.setServers(['8.8.8.8', '8.8.4.4']);
-
+// Dependencies
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const http = require('http');
 const submitTalentForm = require('./API/submit'); 
 
+// Initialize App
 const app = express();
+const server = http.createServer(app); 
 
-// 2. Middleware (Must be before Routes)
+// Middleware
 app.use(cors());
 app.use(express.json()); 
 
-// 3. Database Connection
+// Database Connection
+const dbURI = process.env.MONGODB_URI || "mongodb+srv://Clarence:Clarence1234@expressnode.kbrntli.mongodb.net/";
+
 mongoose
-    .connect("mongodb+srv://Clarence:Clarence1234@expressnode.kbrntli.mongodb.net/")
+    .connect(dbURI)
     .then(() => console.log("MongoDB Connected Successfully"))
     .catch((error) => console.error("MongoDB Connection Error:", error.message));
 
-// 4. Routes
+// Routes
 app.get('/', (req, res) => {
-    res.send("<h1>SERVER IS RUNNING</h1>"); // Simplified for brevity
+    res.send("<h1>SERVER IS RUNNING IN AZURE</h1>");
 });
 
 app.use("/submit", submitTalentForm); 
 
-const PORT = 7000;
-app.listen(PORT, () => {
-    console.log(`Server is Running on http://localhost:${PORT}`);
+// Server Initialization
+const PORT = process.env.PORT || 7000;
+
+server.listen(PORT, () => {
+    console.log(`Server is Running on Port ${PORT}`);
 });
