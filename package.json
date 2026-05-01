@@ -1,13 +1,14 @@
 {
-  "name": "expressnode",
+  "name": "pupbc-portfolio-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend API for the PUPBC Portfolio Builder",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["PUPBC", "Portfolio", "API"],
+  "author": "Clarence",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
